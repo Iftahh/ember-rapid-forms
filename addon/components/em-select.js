@@ -9,6 +9,7 @@ Syntax:
     content=array_of_options
     optionValuePath=keyForValue
     optionLabelPath=keyForLabel
+    optionDisabledPath=keyForDisabled
     prompt="Optional default prompt"}}
 
     //Optional params
@@ -24,6 +25,7 @@ export default FormGroupComponent.extend({
   selection: null,
   optionValuePath: 'id',
   optionLabelPath: 'value',
+  optionDisabledPath: null,
   prompt: null,
   disabled: null,
   autofocus: null,
