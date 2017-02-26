@@ -1,4 +1,6 @@
-<select onchange={{action "change"}} class="form-control {{mainComponent.elementClass}}" id={{mainComponent.id}} required={{mainComponent.required}} size={{mainComponent.size}} autofocus={{mainComponent.autofocus}} disabled={{mainComponent.disabled}} multiple={{mainComponent.multiple}}>
+<select onchange={{action "change"}} class="form-control {{mainComponent.elementClass}}" id={{mainComponent.id}}
+    required={{mainComponent.required}} {{#if mainComponent.size}} size={{mainComponent.size}} {{/ifs}}
+    autofocus={{mainComponent.autofocus}} disabled={{mainComponent.disabled}} multiple={{mainComponent.multiple}}>
 {{#if mainComponent.prompt}}
   <option value="" selected={{eq "" selectedValue}}>
     {{mainComponent.prompt}}
