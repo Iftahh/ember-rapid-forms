@@ -33,7 +33,9 @@ export default Ember.Component.extend(HasPropertyMixin, HasPropertyValidationMix
   classNameBindings: ['class', 'hasSuccess', 'hasWarning', 'hasError', 'validationIcons:has-feedback', 'required'],
   attributeBindings: ['disabled'],
   canShowErrors: false,
-  i18n: Ember.inject.service(),
+  i18n: Ember.computed(function() {
+     return Ember.getOwner(this).lookup('service:i18n');
+   }),
 
   hasSuccess: Ember.computed('status', 'canShowErrors', {
     get: function() {
@@ -100,10 +102,10 @@ export default Ember.Component.extend(HasPropertyMixin, HasPropertyValidationMix
   hasSetForm: false,
   didReceiveAttrs(arg) {
     this._super(...arguments);
-    if(!!arg.newAttrs.form && !this.get('hasSetForm')){
+    if(this.get('form') && !this.get('hasSetForm')){
       this.set('hasSetForm', true);
     }
-    else if(!arg.newAttrs.form && !this.get('hasSetForm')){
+    else if(!this.get('form') && !this.get('hasSetForm')){
       Ember.deprecate('Please use the new form.input helper defined in 1.0.0beta10', !!arg.newAttrs.form, {id: 'ember-rapid-forms.yielded-form', until: 'v1.0'});
       Ember.defineProperty(this, 'form', Ember.computed.alias('formFromPartentView'));
       this.set('hasSetForm', true);
